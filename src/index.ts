@@ -16,18 +16,17 @@ export interface PluginOptions {
   coverageFilesPath: string
 }
 
+export const defaultPluginOptions: PluginOptions[] = [
+  {
+    title: "# Coverage",
+    ignoreCoveragePattern: [".test.", ".snap"],
+    coverageFilesPath: "coverage/coverage-final.json",
+  },
+]
 /**
  * Danger.JS plugin to display the code coverage on a pull request by commenting it via the CI
  */
-export default function codeCoverage(
-  pluginOptions: PluginOptions[] = [
-    {
-      title: "# Coverage",
-      ignoreCoveragePattern: [".test.", ".snap"],
-      coverageFilesPath: "coverage/coverage-final.json",
-    },
-  ]
-) {
+export function codeCoverage(pluginOptions: PluginOptions[] = defaultPluginOptions) {
   pluginOptions.forEach(options => {
     const filterFiles = (file: string) => {
       let isFileDisplayed = true
@@ -47,8 +46,7 @@ export default function codeCoverage(
 
     message(
       `${options.title}
-  
-          ${generateMarkdownTable(coverageTable)}`
+       ${generateMarkdownTable(coverageTable)}`
     )
   })
 }
