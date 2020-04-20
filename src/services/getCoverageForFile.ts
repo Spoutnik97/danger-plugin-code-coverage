@@ -1,24 +1,20 @@
-// @ts-ignore
-import parseCoverage from "byzantine"
 import { keyBy } from "lodash"
 import * as path from "path"
 import { parseCoverage } from "../lib/parseCoverage"
+import { PluginOptions } from ".."
 
 const rootDir = process.cwd()
 
-const getFileAbsolutePath = (filePath: string): string =>
-  path.join(rootDir, filePath)
+const getFileAbsolutePath = (filePath: string): string => path.join(rootDir, filePath)
 
-const coverageFilePath = getFileAbsolutePath("coverage/coverage-final.json")
+export const getCoverageForFile = (filePath: string, options?: PluginOptions) => {
+  const coverageFilePath = getFileAbsolutePath((options && options.coverageFilesPath) || "coverage/coverage-final.json")
 
-const coverageJson = require(coverageFilePath)
+  const coverageJson = require(coverageFilePath)
 
-const coverages = parseCoverage(coverageJson)
+  const coverages = parseCoverage(coverageJson)
 
-const coverageByPath = keyBy(
-  coverages,
-  (coverage: { path: string }) => coverage.path,
-)
+  const coverageByPath = keyBy(coverages, (coverage: { path: string }) => coverage.path)
 
-export const getCoverageForFile = (filePath: string) =>
-  coverageByPath[getFileAbsolutePath(filePath)]
+  return coverageByPath[getFileAbsolutePath(filePath)]
+}

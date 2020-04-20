@@ -10,24 +10,45 @@ export declare function warn(message: string): void
 export declare function fail(message: string): void
 export declare function markdown(message: string): void
 
+export interface PluginOptions {
+  title: string
+  ignoreCoveragePattern: string[]
+  coverageFilesPath: string
+}
+
 /**
  * Danger.JS plugin to display the code coverage on a pull request by commenting it via the CI
  */
-export default function codeCoverage() {
-  const filterFiles = (file: string) => {
-    if (file.includes(".test.") || file.includes(".snap")) { return false }
-    return true
-  }
+export default function codeCoverage(
+  pluginOptions: PluginOptions[] = [
+    {
+      title: "# Coverage",
+      ignoreCoveragePattern: [".test.", ".snap"],
+      coverageFilesPath: "coverage/coverage-final.json",
+    },
+  ]
+) {
+  pluginOptions.forEach(options => {
+    const filterFiles = (file: string) => {
+      let isFileDisplayed = true
+      options.ignoreCoveragePattern.forEach(pattern => {
+        if (file.includes(pattern)) {
+          isFileDisplayed = false
+        }
+      })
+      return isFileDisplayed
+    }
 
-  const coverageTable = [["File", "Branches", "Statements"]]
-    .concat([[], [":heavy_plus_sign: **NEW FILES**"], []])
-    .concat(generateCoverageTable(danger.git.created_files.filter(filterFiles)))
-    .concat([[], [":pencil2: **MODIFIED FILES**"], []])
-    .concat(generateCoverageTable(danger.git.modified_files.filter(filterFiles)))
+    const coverageTable = [["File", "Branches", "Statements"]]
+      .concat([[], [":heavy_plus_sign: **NEW FILES**"], []])
+      .concat(generateCoverageTable(danger.git.created_files.filter(filterFiles), options))
+      .concat([[], [":pencil2: **MODIFIED FILES**"], []])
+      .concat(generateCoverageTable(danger.git.modified_files.filter(filterFiles), options))
 
-  message(
-    `# Coverage
-
-        ${generateMarkdownTable(coverageTable)}`,
-  )
+    message(
+      `${options.title}
+  
+          ${generateMarkdownTable(coverageTable)}`
+    )
+  })
 }
