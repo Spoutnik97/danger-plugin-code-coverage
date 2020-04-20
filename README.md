@@ -27,7 +27,7 @@ yarn add -D danger-plugin-code-coverage
 
 ```javascript
 // dangerfile.js
-import codeCoverage from "danger-plugin-code-coverage"
+import { codeCoverage } from "danger-plugin-code-coverage"
 
 codeCoverage()
 ```

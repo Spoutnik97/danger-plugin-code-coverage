@@ -1,4 +1,4 @@
-import codeCoverage from "./index"
+import { codeCoverage } from "./index"
 
 declare const global: any
 

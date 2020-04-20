@@ -1,6 +1,6 @@
 {
   "name": "danger-plugin-code-coverage",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Danger.JS plugin to display the code coverage on a pull request by commenting it via the CI",
   "author": {
     "name": "Guillaume Piedigrossi",
@@ -27,7 +27,7 @@
     "test": "jest",
     "predocs": "rm -rf docs/",
     "docs": "esdoc -c .esdoc.json",
-    "prepublish": "npm run build",
+    "prepublish": "yarn run build",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "prettier": "prettier",
     "prettier-write": "npm run prettier -- --parser typescript --no-semi --trailing-comma es5 --write --print-width 120",
