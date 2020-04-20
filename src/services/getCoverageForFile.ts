@@ -2,6 +2,7 @@
 import parseCoverage from "byzantine"
 import { keyBy } from "lodash"
 import * as path from "path"
+import { parseCoverage } from "../lib/parseCoverage"
 
 const rootDir = process.cwd()
 
