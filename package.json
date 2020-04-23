@@ -1,6 +1,6 @@
 {
   "name": "danger-plugin-code-coverage",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Danger.JS plugin to display the code coverage on a pull request by commenting it via the CI",
   "author": {
     "name": "Guillaume Piedigrossi",
@@ -39,7 +39,6 @@
     "node": ">=4.0.0"
   },
   "dependencies": {
-    "byzantine": "^1.1.0",
     "danger": "^10.1.1",
     "lodash": "^4.17.15",
     "markdown-table": "^2.0.0"
