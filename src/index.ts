@@ -45,10 +45,7 @@ export function codeCoverage(pluginOptions: PluginOptions[] = defaultPluginOptio
         .concat([[], [":pencil2: **MODIFIED FILES**"], []])
         .concat(generateCoverageTable(danger.git.modified_files.filter(filterFiles), options))
 
-      message(
-        `${options.title}
-        ${generateMarkdownTable(coverageTable)}`
-      )
+      message(`${options.title}\n${generateMarkdownTable(coverageTable)}`)
     } catch (error) {
       fail(`An error occurred when getting the code coverage: ${error.message}. Danger exits with code: ${error.code}`)
     }
