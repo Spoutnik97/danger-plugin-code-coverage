@@ -14,6 +14,7 @@ export interface PluginOptions {
   title: string
   ignoreCoveragePattern: string[]
   coverageFilesPath: string
+  projectRoot?: string
 }
 
 export const defaultPluginOptions: PluginOptions[] = [

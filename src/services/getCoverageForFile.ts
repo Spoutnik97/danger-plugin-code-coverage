@@ -5,7 +5,8 @@ import { PluginOptions } from ".."
 
 const rootDir = process.cwd()
 
-const getFileAbsolutePath = (filePath: string): string => path.join(rootDir, filePath)
+const getFileAbsolutePath = (filePath: string, projectRoot?: string): string =>
+  path.join(projectRoot || rootDir, filePath);
 
 export const getCoverageForFile = (filePath: string, options?: PluginOptions) => {
   const coverageFilePath = getFileAbsolutePath((options && options.coverageFilesPath) || "coverage/coverage-final.json")
@@ -16,5 +17,5 @@ export const getCoverageForFile = (filePath: string, options?: PluginOptions) =>
 
   const coverageByPath = keyBy(coverages, (coverage: { path: string }) => coverage.path)
 
-  return coverageByPath[getFileAbsolutePath(filePath)]
+  return coverageByPath[getFileAbsolutePath(filePath, options && options.projectRoot)]
 }
