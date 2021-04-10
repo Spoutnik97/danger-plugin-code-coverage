@@ -16,5 +16,5 @@ export const formatCoverageState = (stat: number) => {
     color = RED
   }
 
-  return `![${percentage}](https://placehold.it/15/${color}/000000?text=+) ${percentage}%`
+  return `![${percentage}](https://via.placeholder.com/15/${color}/000000?text=+) ${percentage}%`
 }
