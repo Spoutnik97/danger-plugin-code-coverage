@@ -1,6 +1,6 @@
 {
   "name": "danger-plugin-code-coverage",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Danger.JS plugin to display the code coverage on a pull request by commenting it via the CI",
   "author": {
     "name": "Guillaume Piedigrossi",
@@ -26,7 +26,7 @@
     "build": "tsc",
     "test": "jest",
     "prepublish": "yarn run build",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release && npm publish && semantic-release post",
     "prettier": "prettier",
     "prettier-write": "npm run prettier -- --parser typescript --no-semi --trailing-comma es5 --write --print-width 120",
     "prettier-project": "npm run prettier-write -- 'src/**/*.{ts,tsx}'",
