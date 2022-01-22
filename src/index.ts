@@ -34,7 +34,7 @@ export function codeCoverage(
     const filterFiles = (file: string) => {
       let isFileDisplayed = true;
       options.ignoreCoveragePattern.forEach(pattern => {
-        if (file.includes(pattern)) {
+        if (file.match(pattern)) {
           isFileDisplayed = false;
         }
       });
