@@ -2,11 +2,13 @@ import { roundPercentage } from "./roundPercentage"
 
 export const formatCoverageState = (stat: number) => {
   const percentage = roundPercentage(stat * 100)
+  let color = ""
   if (percentage < 80) {
-    return "🟧"
+    color = "🟧"
   } else if (percentage < 50) {
-    return "🟥"
+    color = "🟥"
   } else {
-    return "🟩"
+    color = "🟩"
   }
+  return `${color} ${percentage}%`
 }
