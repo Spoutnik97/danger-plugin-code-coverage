@@ -9,6 +9,8 @@ export const formatCoverageState = (stat: number) => {
   } else if (percentage < 80) {
     color = "🟧";
   } else {
-    return "🟩";
+    color = "🟩";
   }
+
+  return `${color} ${percentage}%`;
 };
